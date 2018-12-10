@@ -1,0 +1,17 @@
+<div>
+  <h2>Users</h2>
+  <div *ngFor="let user of users" style="border: 1px solid black;"> 
+    ID: {{user.id}} <br>
+    Email: {{user.email}} <br>
+    Name: {{user.name}}<br>
+    User type: {{user.user_type}} <br>
+
+    <select [(ngModel)]="user.userType_">
+        <option *ngFor="let t of userTypes" [ngValue]="t.typeValue">{{t.typeName}}</option>
+      </select>
+      <button (click) = "updateUserType(user, user.userType_)">Update User Type</button>
+    <!-- TOKEN: {{user.token}} <br>
+    ROLE: {{user.role}} -->
+    <!-- <button (click)="deleteEntity(user)">Delete User</button> -->
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div >
+  
+  <h2>Formular donare</h2>
+  Tatuaje? <input type="checkbox" [checked]="tatuajeC" (change)="tatuajeC = !tatuajeC" />
+<br>
+Numar luni ultima donare: <input [(ngModel)]="ultimaDonare" type="number">
+<br>
+Ati consumat bauturi alcoolice in ultimele 48 de ore? <input type="checkbox" [checked]="bauturiAlcoolice" (change)="bauturiAlcoolice = !bauturiAlcoolice" />
+
+  Tatuaje: {{tatuajeC}}
+  <button (click)="canIDonate(tatuajeC, bauturiAlcoolice, ultimaDonare)">My result</button>
+</div>

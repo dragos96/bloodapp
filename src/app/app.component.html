@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{title}}
+  </h1>
+
+  <hr> Your login credentials: ID: {{userObject.id}}
+  <br> Email: {{userObject.email}}
+  <br> User type: {{userObject.user_type}}
+  <br> User type name: {{userObject.user_type_name}} Name: {{userObject.name}}
+  <br>
+
+  <hr>
+  <div *ngIf="userSignedIn && (userObject.user_type_name == 'DONATOR')">
+    <button (click)="vizualizareFormularToggle()">Can I donate</button>
+    <div *ngIf="vizualizareFormular">
+      <app-formular></app-formular>
+    </div>
+  </div>
+</div>
+
+
+<h2>Login</h2>
+<!-- <a href="http://localhost:9000/SecurityServerside/LoginController?code=1111111">Login with fb</a> -->
+<app-signin (signInEvent)="getUserSignedIn()"></app-signin>
+
+
+
+
+<hr>
+
+<div class="row">
+
+  <div *ngIf="userSignedIn && (userObject.user_type_name == 'ADMIN')" class="col">
+    <app-users></app-users>
+  </div>
+
+  <div *ngIf="userSignedIn && (userObject.user_type_name == 'ADMIN' || userObject.user_type_name == 'PERSONAL' || userObject.user_type_name == 'MEDIC') "
+    class="col">
+    <app-centers></app-centers>
+  </div>
+
+  <!-- donations and donation requests -->
+  <div *ngIf="userSignedIn">
+    <app-blood-donation [userObject]="userObject" (donationEvent)="newDonationEvent()"></app-blood-donation>
+  </div>
+</div>

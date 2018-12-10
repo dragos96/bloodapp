@@ -1,0 +1,77 @@
+<div class="col">
+  <h2>Add donation</h2>
+  Center id:
+
+  <select [(ngModel)]="newDonation.center_id">
+    <option *ngFor="let c of centers" [ngValue]="c.id">{{c.name}}</option>
+  </select>
+  <br> Blood type:
+
+  <select [(ngModel)]="newDonation.blood_type">
+    <option *ngFor="let bt of bloodTypes" [ngValue]="bt">{{bt}}</option>
+  </select>
+  <br> Details:
+  <input [(ngModel)]="newDonation.details">
+  <br> Quantity:
+  <input type="number" [(ngModel)]="newDonation.quantity">
+  <br>
+  <button (click)="saveNewDonation()">Save</button>
+
+</div>
+<div class="col">
+  <h2>All donations</h2>
+    <div *ngFor="let don of bloodDonations">
+      ID: {{don.id}}
+      <br> User (id): {{don.user_id}}
+      <br> Center (id): {{don.center_id}}
+      <br>
+      <div class="blood-donation-details">
+        Details: {{don.details}}
+      </div>
+      Blood type: {{don.blood_type}}
+      <br> Status:
+      <span *ngIf="don.status; else statusFalse">YES</span>
+      <ng-template #statusFalse>
+        NO
+      </ng-template>
+    </div>
+</div>
+<div class="col">
+  <h2>Add new request</h2>
+
+
+  Center id:
+
+  <select [(ngModel)]="blood_request.center_id">
+    <option *ngFor="let c of centers" [ngValue]="c.id">{{c.name}}</option>
+  </select>
+  <br> Blood type:
+
+  <select [(ngModel)]="blood_request.blood_type">
+    <option *ngFor="let bt of bloodTypes" [ngValue]="bt">{{bt}}</option>
+  </select>
+  <br> Details:
+  <input [(ngModel)]="blood_request.details">
+ 
+  <br>
+  <button (click)="saveNewDonationRequest()">Save</button>
+
+  <hr>
+
+  <h2>Blood requests</h2>
+  <div *ngFor="let blood of bloodRequests">
+    ID: {{blood.id}}
+    <br> User (id): {{blood.user_id}}
+    <br> Center (id): {{blood.center_id}}
+    <br>
+    <div class="blood-donation-details">
+      Details: {{blood.details}}
+    </div>
+    Blood type: {{blood.blood_type}}
+    <br> Status:
+    <span *ngIf="blood.status; else statusFalse">YES</span>
+    <ng-template #statusFalse>
+      NO
+    </ng-template>
+  </div>
+</div>
